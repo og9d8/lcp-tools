@@ -5,13 +5,11 @@ lcp-tools to the rescue!
 use ```lcp-tools.LCPAuthHeader``` to get your authentication right.
 
 # Example
-```
+``` js
 var request = require("request");
 var lcptools = require("lcp-tools")
 var env = process.env.NODE_ENV || 'Prod_sandbox_common';
 var config = require('../config')[env];
-
-
 var macId = config.macId;
 var macKey	= config.macKey; 
 var method =   "POST";
@@ -22,22 +20,18 @@ var url = "https://" + server + path;
 
 var authHeader = lcptools.LCPAuthHeader(macId, macKey, method, server,path,request_body);
 
-
-
 var options = {
     url: url,
     method: 'POST',
     headers: {
-    			'Content-Type': 'application/json',
-    			'Authorization': authHeader
-			},
+    	'Content-Type': 'application/json',
+    	'Authorization': authHeader
+		},
     body: request_body
 };
 
-
-
 request(options, function (error, response, body) {
-    				// Do stuff with 'body' here
-				}
+    		// Do stuff with 'body' here
+		}
 	);
 ```
